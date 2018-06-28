@@ -15,15 +15,15 @@ def check_result():
 		f = open("result",'w');
 		print ("a new result is created!")
 
-
 if __name__ == '__main__':
+	fo = open("log","w")
 	check_result()
 	for i in make_website.MakeWebsite():
+		fo.write(i+'\n')
 		try:
-			if judge.Judge(i):
-				output.OutPut('result',i)
-			else :
-				print(i)
-
-		finally:
-			print(i)
+			s = judge.Get_Html(i)
+			if s :
+				print("already find " + s + "  \n")
+				output.OutPut(s)
+		except BaseException:
+			pass
